@@ -4,10 +4,9 @@
 Este análisis evalúa la relación entre movilidad urbana y productividad económica en ciudades latinoamericanas durante 2024.  
 El objetivo fue identificar **ciudades prioritarias para inversión en infraestructura de transporte**, utilizando datos de congestión vehicular (TomTom) e indicadores económicos (OECD).  
 
-El análisis reveló que no existe una correlación lineal clara entre el PIB per cápita y los niveles de congestión vehicular, demostrando que no por ser ciudades más ricas automáticamente tienen mejor movilidad.
+Hallazgo clave: **no existe correlación lineal clara entre PIB per cápita y niveles de congestión vehicular**, demostrando que no por ser ciudades más ricas automáticamente tienen mejor movilidad.
 
 ---
-
 ## 🎯 Objetivo
 - Evaluar la relación entre congestión vehicular y productividad económica.  
 - Identificar ciudades críticas para inversión en infraestructura de transporte.  
@@ -16,10 +15,8 @@ El análisis reveló que no existe una correlación lineal clara entre el PIB pe
 ---
 
 ## 📂 Dataset
-**Cobertura:** 15 ciudades latinoamericanas en 7 países (Argentina, Brasil, Colombia, México, Perú, Uruguay y Chile).  
-**Fuentes:**  
-- TomTom (movilidad urbana)  
-- OECD (indicadores económicos)  
+**Cobertura:** 15 ciudades en 7 países (Argentina, Brasil, Colombia, México, Perú, Uruguay, Chile).  
+**Fuentes:** TomTom (movilidad) + OECD (economía).  
 
 **Variables de movilidad:**
 - `JamsDelay`: Tiempo de retraso por congestión (minutos)  
@@ -29,13 +26,19 @@ El análisis reveló que no existe una correlación lineal clara entre el PIB pe
 **Variables económicas:**
 - `city_gdp_capita`: PIB per cápita (USD)  
 - `unemployment_pct`: Tasa de desempleo  
-- `population`: Población total
-  
+- `population`: Población total  
+
+**Procesamiento:**
+- Unión INNER de datasets TomTom + OECD.  
+- Limpieza de formatos numéricos y porcentajes.  
+- Conversión de variables económicas a `float64`.  
+- Agregación ciudad-año para métricas anuales.  
+
+
 ---
 ## 🛠️ Herramientas y librerías
 - Python (pandas, numpy)  
 - Matplotlib / Seaborn — visualizaciones (boxplot, histogramas, gráficos de barras)  
-
 ---
 
 ## 🔬 Metodología
@@ -45,14 +48,8 @@ El análisis reveló que no existe una correlación lineal clara entre el PIB pe
 4. Visualizaciones exploratorias (boxplot, histogramas, gráficos comparativos).  
 5. Interpretación de hallazgos y recomendaciones de inversión.
 
- ## 📊 Hallazgos principales
-- **No existe correlación directa** entre PIB per cápita y congestión vehicular.  
-- **Ciudad de México**: congestión crítica (2,833 min) con PIB de $21,111 USD.  
-- **Bogotá**: alta congestión (1,141 min) con PIB moderado ($11,442 USD).  
-- **Brasilia**: caso excepcional — PIB alto ($16,251 USD) y congestión muy baja (101 min), gracias a su diseño urbano planificado.  
-- - La **densidad poblacional no determina la congestión**: Buenos Aires (15.4M) maneja mejor el tráfico que Bogotá (11.3M).  
-
 ---
+
 ## 📊 Visualizaciones
 
 - **Boxplot:** Distribución de congestión por ciudad
@@ -61,31 +58,30 @@ El análisis reveló que no existe una correlación lineal clara entre el PIB pe
 - **Análisis Comparativo:** Ranking de ciudades por eficiencia
 ---
 
+
+## 📊 Hallazgos principales
+| Ciudad           | PIB per cápita (USD) | Congestión (min) | Observación        |
+|------------------|----------------------|------------------|--------------------|
+| Ciudad de México | $21,111               | 2,833            | Congestión crítica |
+| Bogotá           | $11,442               | 1,141            | Alta congestión, PIB moderado |
+| Brasilia         | $16,251               | 101              | Caso excepcional: PIB alto y baja congestión |
+
+- **No existe correlación directa** entre PIB per cápita y congestión vehicular.  
+- **La infraestructura de transporte es más determinante que la densidad poblacional**: Buenos Aires (15.4 millones de habitantes) maneja mejor el tráfico que Bogotá (11.3 millones).  
+- **Brasilia demuestra que la planificación urbana puede lograr simultáneamente alta productividad y baja congestión.**
+
+---
+
 ## 💡 Recomendaciones
-- **Ciudades prioritarias para inversión:**  
-  - Ciudad de México: intervención urgente por congestión crítica.  
-  - Bogotá: mejor relación costo-beneficio potencial.  
-
-- **Acciones recomendadas:**  
-  - Desarrollar análisis de impacto económico detallado para Ciudad de México y Bogotá.  
-  - Replicar el modelo de **Brasilia** como caso de éxito en planificación urbana.  
-
----
-
-## ⚠️ Limitaciones
-- Análisis limitado a datos de 2024.  
-- No se incluyen variables socioeconómicas adicionales (ej. costo del transporte, políticas locales).  
-- El estudio es exploratorio y no establece causalidad.  
+- **Ciudades prioritarias:**  
+  - Ciudad de México: intervención urgente.  
+  - Bogotá: mejor relación costo-beneficio.  
+- **Acciones:**  
+  - Desarrollar análisis de impacto económico detallado para ambas ciudades.  
+  - Replicar modelo de Brasilia como caso de éxito.  
 
 ---
 
-## 🔜 Próximos pasos
-- Extender el análisis a periodos más largos para detectar tendencias.  
-- Incorporar variables socioeconómicas adicionales.  
-- Evaluar impacto de políticas de movilidad sostenible en ciudades piloto.
-
-  
----
 ## 📁 Estructura del repositorio
 - `readme.md`
 - `data/` → datasets original.
